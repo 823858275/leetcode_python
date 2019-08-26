@@ -1,15 +1,18 @@
+#边界情况left与右的初始位置要与刚开始的时候相对应
+#查找目标值
 def get_target(nums, target):
-    left, right = 0, len(nums)
+    left, right = 0, len(nums)#left为序列的开头，right为序列的末尾索引+1
     while left < right:
         mid = left + (right - left) // 2
         if nums[mid] == target:
             return mid
         elif nums[mid] < target:
-            left = mid + 1
+            left = mid + 1  #下一轮迭代，left与right的位置与初始相同
         else:
             right = mid
     return -1
 #查找第一个不小于目标值的函数
+#最后left+1=right,再进行一次迭代，left=right
 def find_2(nums,target):
     left,right=0,len(nums)
     while left<right:
@@ -31,3 +34,5 @@ def find_3(nums,target):
     return right
 
 
+nums=[0,1,1,2]
+print(find_2(nums,target=2))
