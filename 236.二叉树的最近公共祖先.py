@@ -12,30 +12,15 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        path_p=[]
-        path_q=[]
-        self.findPath(root,path_p,p)
-        self.findPath(root,path_q,q)
-        i=0
-        while i<len(path_p) and i<len(path_q):
-            if path_p[i]!=path_q[i]:
-                return path_p[i-1]
-            i+=1
-        if i==len(path_p):
-            return path_p[-1]
-        if i==len(path_q):
-            return path_q[-1]
-    def findPath(self,root: TreeNode,path: List,node: TreeNode) -> bool:
-        if not root:
-            return False
-        if root==node:
-            path.append(root)
-            return True
-        path.append(root)
-        l=left=self.findPath(root.left,path,node)
-        r=right=self.findPath(root.right,path,node)
-        if l or r:
-            return True
-        path.pop()
-        return False
+        if root==p or root==q or not root:
+            return root
+        left=self.lowestCommonAncestor(root.left,p,q)
+        right=self.lowestCommonAncestor(root.right,p,q)
+        if not left and not right:
+            return None
+        elif left and not right:
+            return left
+        elif not left and right:
+            return right
+        return root
 

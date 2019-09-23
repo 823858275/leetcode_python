@@ -9,7 +9,8 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+#二叉搜索树的中序遍历是有序数组
+#首先找到数组中间的数，即根结点
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
         n=len(nums)
@@ -18,7 +19,7 @@ class Solution:
         if l>r:
             return None
         m=(l+r)//2
-        node=TreeNode(nums[m])
+        node=TreeNode(nums[m])#寻找根节点，数组中间的位置
         node.left=self.recursion(nums,l,m-1)
         node.right=self.recursion(nums,m+1,r)
         return node

@@ -9,7 +9,9 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+#最近的公共祖先结点的值在两个结点值之间
+#如果当前结点的值小于较小值则往右子树中寻找
+#如果当前结点的值大于较大值则往左子树中寻找
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         pa=min(p.val,q.val)
@@ -25,5 +27,4 @@ class Solution:
             return self.findNode(node.right,a,b)
         elif tmp>b:
             return self.findNode(node.left,a,b)
-        
 
